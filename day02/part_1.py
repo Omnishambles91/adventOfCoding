@@ -8,13 +8,10 @@ def main() -> int:
         return total
 
 def check_digits(line: dict) -> bool:
-    direction = int(line[0]) - int (line[1])
-    if direction == 0:
-        return False
-    ascending = direction < 0
-    for digit in range(len(line) -1):
-        difference = (int(line[digit]) - int(line[digit+1]))
-        if difference == 0 or (ascending and difference > -1 and difference < -3) or (not ascending and difference > 1 and difference < 3):
+    acs = (int(line[0]) - int(line[1])) < 0
+    for digit in range(len(line)-1):
+        diff = (int(line[digit]) - int(line[digit+1]))
+        if  diff == 0 or (acs and (diff > -1 or diff < -3)) or (not acs and (diff < 1 or diff > 3)):          
             return False
     return True
 
